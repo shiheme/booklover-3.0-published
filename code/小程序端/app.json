@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/room/room",
+    "pages/like/like",
+    "pages/mine/mine",
+    "pages/list/list",
+    "pages/detail/detail",
+    "pages/page/page"
+  ],
+  "darkmode": true,
+  "themeLocation": "theme.json",
+  "window": {
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "@navBgColor",
+    "navigationBarTextStyle": "@navTxtStyle",
+    "backgroundColor": "@bgColor",
+    "backgroundTextStyle": "@bgTxtStyle",
+    "backgroundColorTop": "@bgColorTop",
+    "backgroundColorBottom": "@bgColorBottom"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#333333",
+    "selectedColor": "#000000",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/on/trans.png",
+        "selectedIconPath": "images/on/trans.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/room/room",
+        "iconPath": "images/on/trans.png",
+        "selectedIconPath": "images/on/trans.png",
+        "text": "清单"
+      },
+      {
+        "pagePath": "pages/like/like",
+        "iconPath": "images/on/trans.png",
+        "selectedIconPath": "images/on/trans.png",
+        "text": "点赞"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.4",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

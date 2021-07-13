@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wrapleft": "../../temp/comps/wrapleft/index",
+    "navtitle": "../../temp/comps/navtitle/index",
+    "tabbar": "../../temp/comps/tabbar/index",
+    "pop": "../../temp/comps/pop/pop",
+    "indexnav": "../../temp/comps/indexnav/indexnav",
+    "loadmore": "../../temp/comps/loadmore/index",
+    "dataitem": "../../temp/comps/item/item"
+  }
+}

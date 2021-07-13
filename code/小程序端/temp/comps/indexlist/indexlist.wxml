@@ -1,0 +1,79 @@
+<!--index/component/list.wxml-->
+
+<scroll-view scroll-y="{{true}}" bindscroll="" scroll-with-animation="true"
+  bindscrolltolower="onReachBottom" enable-back-to-top="true"
+  refresher-enabled="true" refresher-default-style="none"
+  bindrefresherrefresh="onPullDownRefresh" refresher-triggered="{{loading}}"
+  scroll-anchoring="{{true}}" throttle="{{false}}" upper-threshold="50" lower-threshold="50" class="listwrap"
+  bindscrolltolower="onReachBottom">
+
+  <view class="wrap"
+    style="padding-bottom:calc(200rpx + env(safe-area-inset-bottom));padding-top: {{customBarHeight}}px;"
+    wx:if="{{posttype=='topic'}}">
+
+    <view class="cateswrap {{siteinfo[0].safemode == '1' && !isadmin ? 'safemode':''}}" wx:if="{{state}}">
+      <scroll-view scroll-x style="width:100%;white-space: nowrap;" class="">
+        <view class="cates">
+          <view class="cateilist bgcolor-sub" bindtap="bindHandler"
+            data-url="/pages/list/list?posttype={{cnttype}}&title={{cnttypetitle}}">
+            <text class="text">全部{{cnttypetitle}}</text>
+          </view>
+          <block wx:for="{{state}}" wx:for-index="index" wx:key="id">
+            <view class="cateilist bgcolor-sub" bindtap="bindHandler"
+              data-url="/pages/list/list?posttype={{cnttype}}&{{cnttype=='library'?'stateid':'catsid'}}={{item.id}}&title={{cnttypetitle}}&catstxt={{item.name}}">
+              <text class="text">{{item.name}}</text>
+              <text class="text count">{{item.count}}</text>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="itemwrap">
+      <view class="item" wx:for="{{posts}}" wx:for-index="index" wx:key="id">
+        <view class="cardbox" wx:if="{{index%3 ==0  && index!=0}}">
+          <view class="card">
+            <ad-custom unit-id="adunit-959923baa2fde508"></ad-custom>
+          </view>
+        </view>
+        <view class="cardbox">
+          <dataitem index="{{index}}" posttype="{{posttype}}" isadmin="{{isadmin}}" item="{{posts}}" ani="{{ani}}" />
+          <!-- <audioring bind:myevent="setpost" index="{{index}}" audKey="{{audKey}}" waiting="{{waiting}}" type="index" item="{{posts}}" value="40" margintop="{{titleBarHeight}}" height="{{titleBarHeight+windowWidth}}" /> -->
+        </view>
+      </view>
+    </view>
+    <loadstatus errtext="{{errtext}}" length="{{posts.length}}" hasnextpage="{{hasnextpage}}" />
+  </view>
+  <view class="wrap"
+    style="padding-bottom:calc(200rpx + env(safe-area-inset-bottom));padding-top: {{customBarHeight}}px;"
+    wx:elif="{{posttype=='quot'}}">
+    <view class="itemwrap">
+      <view class="item" wx:for="{{posts}}" wx:for-index="index" wx:key="id">
+        <view class="cardbox" wx:if="{{index%3 ==0  && index!=0}}">
+          <view class="card">
+            <ad-custom unit-id="adunit-d360c41f0ccf4685"></ad-custom>
+          </view>
+        </view>
+        <view class="cardbox">
+          <dataitem index="{{index}}" posttype="{{posttype}}" isadmin="{{isadmin}}" item="{{posts}}" />
+          <audioring class="{{siteinfo[0].safemode == '1' && !isadmin ? 'safemode':''}}" bind:myevent="setpost" index="{{index}}"
+            audKey="{{audKey}}" waiting="{{waiting}}" type="index" item="{{posts}}" value="40" />
+        </view>
+      </view>
+    </view>
+    <loadstatus errtext="{{errtext}}" length="{{posts.length}}" hasnextpage="{{hasnextpage}}" />
+  </view>
+
+  <view class="wrap"
+    style="padding-bottom:calc(200rpx + env(safe-area-inset-bottom));padding-top: {{customBarHeight}}px;"
+    wx:elif="{{posttype=='top'}}">
+    <view class="itemwrap">
+      <view class="item" wx:for="{{toplist}}" wx:for-index="index" wx:key="id" wx:if="{{toplist}}">
+        <view class="cardbox">
+          <dataitem index="{{index}}" posttype="{{posttype}}" isadmin="{{isadmin}}" item="{{toplist}}" ani="{{ani}}" wx:if="{{toplist[index].posts[0]!=''}}" />
+        </view>
+      </view>
+    </view>
+    <loadstatus errtext="{{errtext}}" length="{{posts.length}}" hasnextpage="{{hasnextpage}}" />
+  </view>
+</scroll-view>

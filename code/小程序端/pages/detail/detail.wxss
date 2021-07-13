@@ -1,0 +1,810 @@
+.page {
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+.scroll-view {
+  position: fixed;
+  height: 100%;
+  z-index: 50;
+}
+
+/* 交互按钮区域 */
+
+.ctlbtn {
+  margin: 50rpx 50rpx 0 50rpx;
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 24rpx;
+  /* border-width: 0 0 1rpx 0;
+  border-style: solid; */
+}
+
+.ctlbtn .btnbox {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ctlbtn .btnbox .button {
+  position: absolute;
+  width: 100%;
+  height: 100rpx;
+  border: none !important;
+  opacity: 0;
+  z-index: 15;
+}
+
+.ctlbtn .buttoncover {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  position: relative;
+  z-index: 10;
+}
+
+.ctlbtn .buttoncover .icon {
+  width: 70rpx;
+  height: 70rpx;
+  font-size: 1.8rem;
+}
+
+.buttoncover .icon.liked {
+  color: rgba(250, 84, 94, 1); 
+}
+
+.buttoncover .icon.faved {
+  color: rgba(19, 194, 194, 1);
+}
+
+.ctlbtn .buttoncover .text {
+  font-size: 24rpx;
+}
+
+.buttoncover .text.liked,
+.buttoncover .text.faved {
+  opacity: .6;
+}
+
+.h3title {
+  font-weight: bold;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  margin: 0 40rpx;
+}
+
+.canvas {
+  position: fixed;
+  top: 999999rpx;
+  left: 0;
+}
+
+
+
+.entrycontent {
+  padding: 50rpx 0 0;
+}
+
+
+.detailbody.safemode video,
+.safemode .wp-block-video,
+.detailbody.safemode .su-posts-list-loop,
+.detailbody.safemode .su-posts-single-loop,
+.detailbody.safemode .liketiparea {
+  display: none !important;
+}
+
+
+/*猜你喜欢*/
+.detail.star .posts-items {
+  margin: 30rpx;
+}
+
+.postsgroup {
+  width: 100%;
+}
+
+.postsgroup .poststit {
+  padding: 50rpx 0 0 0;
+  font-size: 28rpx;
+  font-weight: 600;
+  text-align: center;
+  /* opacity: .5; */
+}
+
+.postsgroup .poststit .text {
+  position: relative;
+}
+
+.postsgroup .poststit .text::before {
+  content: '——';
+  opacity: .1;
+  margin-right: 20rpx;
+}
+
+.postsgroup .poststit .text::after {
+  content: '——';
+  opacity: .1;
+  margin-left: 20rpx;
+}
+
+.postsgroup .postscnt {
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+
+/*定义内容页面的列表高度*/
+.detail-cell-items {
+  margin: 0 50rpx;
+  padding: 0 40rpx;
+}
+
+.detail-cell-items .card-cell-msg {
+  padding: 30rpx 0;
+}
+
+.detail-cell-items .card-cell-msg .card-cell-base .card-cell-title {
+  font-size: 28rpx;
+}
+
+.detail-cell-items .card-cell-msg .card-cell-more .text {
+  font-size: 28rpx;
+  width: 200rpx;
+  text-align: right;
+}
+
+/*定义图书内页的头部布局*/
+
+.detail .detailhead .card {
+  border-radius: 0rpx;
+}
+
+.detail .detailhead .card .cardimage .imagecover {
+  position: relative;
+  margin: 0rpx auto;
+  border-radius: 5rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: rgba(120, 120, 120, 0.1);
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+  width: 320rpx;
+  height: 444rpx;
+}
+
+.detail .detailhead .basemsg {}
+
+.detail .detailhead .basemsg .title {
+  margin: 30rpx 60rpx 0rpx 60rpx;
+  font-weight: 500;
+  font-size: 44rpx;
+  line-height: 70rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.detail .detailhead .basemsg .cats {
+  margin:10rpx;
+}
+.detail .detailhead .basemsg .cats .text {
+  padding:8rpx 20rpx;
+  font-size:24rpx;
+  font-weight:bold;
+  border-radius: 30rpx;
+  margin:5rpx;
+}
+
+.detail .detailhead .basemsg .subtitle {
+  margin: 0rpx 60rpx 40rpx 60rpx;
+  font-size: 30rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.detail.plus.app .detailhead .card .cardimage .imagecover {
+  width: 320rpx;
+  height: 320rpx;
+}
+
+.detail.plus.app .detailhead .card .cardimage .imagecover.iosapp {
+  border-radius: 22.5%;
+}
+
+.detail.plus.app .detailhead .card .cardimage .imagecover.wxapp {
+  border-radius: 50%;
+}
+
+.navigate-booksmg .imagecover.app {
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.navigate-booksmg .imagecover.app.iosapp {
+  border-radius: 22.5%;
+}
+
+.navigate-booksmg .imagecover.app.wxapp {
+  border-radius: 50%;
+}
+
+.detail.plus .detailhead .basemsg .title {
+  text-align: center;
+}
+
+.detail.plus .detailhead .basemsg .cats {
+  text-align: center;
+}
+
+.detail.plus .detailhead .basemsg .subtitle {
+  text-align: center;
+}
+
+
+.detail .detailhead .label {
+  font-weight: 600;
+  margin: 10rpx 60rpx 0rpx 60rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  opacity: 0.4;
+}
+
+.detail .detailhead .label .text::after {
+  content: '  ';
+}
+
+.detail .detailhead .label .text:last-child::after {
+  content: '';
+}
+
+/*评分*/
+.scoregroup {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin: 50rpx 50rpx 0 50rpx;
+}
+
+.scoregroup .area {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+  padding: 0 10rpx;
+}
+
+.scoregroup .scorearea {
+  border-right: 1rpx solid rgba(123, 123, 123, .2);
+}
+
+.scoregroup .scorearea:last-child {
+  border-right: none;
+}
+
+.scoregroup .area .score {
+  font-size: 50rpx;
+  line-height: 50rpx;
+  font-style: italic;
+  color: #5CEB8E;
+  font-weight: bold;
+}
+
+.scoregroup .area .text {
+  font-size: 24rpx;
+  opacity: .5;
+  font-weight: bold;
+}
+
+.scoregroup .dpscore {
+  display: flex;
+  align-items: flex-start;
+}
+
+.scoregroup .list {}
+
+.scoregroup .listimg {
+  position: relative;
+}
+
+.scoregroup .listimg .bgcover {
+  position: relative;
+  z-index: 10;
+}
+
+.scoregroup .listimg .onweight {
+  position: absolute;
+  z-index: 15;
+  left: 80rpx;
+  top: 0;
+}
+
+.scoregroup .listimg .onweight .item {
+  height: 12rpx;
+  margin-bottom: 2rpx;
+  background-color: #5CEB8E;
+  border-radius: 2rpx;
+}
+
+.scoregroup .listimg .onweight .item:last-child {
+  margin-bottom: 0rpx;
+}
+
+.scoregroup .listimg .bgcover .image {
+  width: 350rpx;
+}
+
+.scoregroup .listtxt {
+  text-align: right;
+  font-size: 22rpx;
+  line-height: 22rpx;
+  opacity: .4;
+}
+
+/*影视内页喜欢头像列表*/
+.detail .detailhead .postlike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.detail .postlike {
+  margin-top: 0rpx;
+  padding: 0rpx;
+}
+
+.detail .postlike .likeli {
+  display: inline-block;
+  margin: 0 10rpx 0 0;
+}
+
+.detail .postlike .likeli .image {
+  margin: 0rpx;
+}
+
+.detail .postlike .likeli .text {
+  font-size: 26rpx;
+  opacity: 0.6;
+  margin-left: 30rpx;
+}
+
+.postshare {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 20rpx 0;
+  border: 1rpx solid rgba(123, 123, 123, .2);
+  border-radius: 50rpx;
+  margin: 100rpx auto;
+}
+
+.postshare .button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.postshare .icon {
+  display: flex;
+  align-items: center;
+  line-height: 50rpx;
+  font-size: 50rpx;
+}
+
+.postshare .text {
+  font-size: 30rpx;
+}
+
+.audio {
+  position: relative;
+  width: 100%;
+}
+
+.quotcopy {
+  margin: 50rpx 50rpx 0 50rpx;
+}
+
+.quotcopy .cardheader {
+  padding-bottom: 0rpx;
+}
+
+.quotcopy .basemsg .title {
+  position: relative;
+  margin-top: 10rpx;
+  font-weight: 500;
+  font-size: 42rpx;
+  line-height: 60rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.quotcopy .basemsg .title .text {
+  position: relative;
+  margin-left: 50rpx;
+  display: block;
+}
+
+.quotcopy .basemsg .title .text::before {
+  content: '“';
+  position: absolute;
+  font-size: 80rpx;
+  margin-left: -50rpx;
+  margin-top: 20rpx;
+  opacity: 0.8;
+}
+
+.quotcopy .cardfoot {
+  padding: 0 40rpx;
+}
+
+
+/* 头部书签样式 */
+
+.navigate-booksmg-box {
+  position: fixed;
+  z-index: 100;
+  width: calc(100% - 100rpx - 88px - 80rpx);
+  overflow: hidden;
+}
+
+.navigate-booksmg {
+  position: absolute;
+  opacity: 0;
+  top: 22rpx;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.navigate-booksmg .imagecover {
+  height: 70rpx;
+  width: 50rpx;
+  margin-right: 10rpx;
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: rgba(120, 120, 120, 0.1);
+
+}
+
+.navigate-booksmg .navigate-booksmg-txt {
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 60rpx);
+}
+
+.navigate-booksmg .navigate-booksmg-txt text.tit {
+  font-size: 30rpx;
+  display: block;
+  height: 40rpx;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navigate-booksmg .navigate-booksmg-txt text.desc {
+  display: block;
+  font-size: 20rpx;
+  height: 24rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navigate-booksmg-box.active .navigate-booksmg {
+  opacity: 1;
+  top: 0rpx;
+  transition: 0.3s;
+}
+
+.mainbutton {
+  margin: 0rpx 40rpx 40rpx 40rpx;
+  padding: 0 30rpx;
+}
+
+.cupbox {
+  position: fixed;
+  right: 40rpx;
+  bottom: calc(150rpx + env(safe-area-inset-bottom));
+  width: 88rpx;
+  border-radius: 44rpx;
+  background-color: rgba(245, 245, 245, 1);
+  z-index: 100;
+}
+
+.cupbox .box {
+  display: flex;
+  flex-flow: column;
+}
+
+.cupbox .box .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.cupbox .box .btn .icon {}
+
+.cupbox .box .btn .text {
+  display: none;
+}
+
+
+.hidecnt {
+  padding: 30rpx;
+}
+
+.hidecntbtn {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-flow: column;
+  padding: 30rpx;
+  position: relative;
+}
+
+.hidecntbtn button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: none !important;
+  opacity: 0;
+  z-index: 15;
+}
+
+.hidecntbtn .icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.hidecntbtn .text {}
+
+
+.sharebtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 300rpx;
+}
+
+.sharebtn .btnbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.sharebtn .btnbox .button {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: none !important;
+  opacity: 0;
+  z-index: 15;
+}
+
+.sharebtn .btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.sharebtn .btn .icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/* 底部喜欢区域 */
+.postlikearea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postlikebtn {
+  width: 100%;
+  height: 80rpx;
+  position: relative;
+  border-radius: 40rpx;
+}
+
+.postlikebtn .button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 15;
+}
+
+.postlikebtn .buttoncover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.postlikecell {
+  flex: auto;
+  margin-left: 30rpx;
+}
+
+.postlikecell .postlike {
+  margin-top: 0rpx;
+}
+
+.postlikecell .postlike .likeli {
+  display: inline-block;
+  margin: 0 10rpx 0 0;
+}
+
+.postlikecell .postlike .likeli .image {
+  margin: 0rpx;
+}
+
+.postlikecell .postlike .text {
+  min-width: 200rpx;
+  font-size: 28rpx;
+  opacity: 0.6;
+  margin-left: 0rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+/* 福利 */
+.acthead {
+  margin-bottom: 100rpx;
+}
+
+.actthumbnail {
+  position: relative;
+  height: 660rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: rgba(120, 120, 120, 0.1);
+  display: flex;
+  align-items: flex-start;
+  padding: 0rpx;
+}
+
+/* 头部分享 */
+.detailshare {
+  position: fixed;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.detailshare .icon {
+  position: relative;
+  z-index: 10;
+  font-size: 1.4rem;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.detailshare .icon::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  left: -5rpx;
+  top: -5rpx;
+}
+
+.detailshare .button {
+  position: absolute;
+  z-index: 15;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  opacity: 0;
+}
+
+.faqcard {
+  margin: 50rpx;
+  padding: 0 40rpx;
+}
+
+.faqcard .subtitle {
+  font-size: 32rpx;
+  opacity: .6;
+  padding: 40rpx 0 0;
+}
+
+.faqcard .card-cell-msg {
+  border: none;
+}
+
+.detail.plus .cardfoot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: rgba(20, 20, 20, 1);
+  /* display: flex; */
+  justify-content: center;
+  display: none;
+  z-index: 100;
+}
+
+.detail.plus .cardfoot.showtxvideo {
+  display: flex;
+}
+
+.detail.plus .cardfoot .hidetxvideo {
+  position: absolute;
+  bottom: 140rpx;
+  margin: 0 auto;
+  height: 88rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(30, 30, 30, 1);
+  padding: 0 30rpx;
+  border-radius: 50rpx;
+}
+
+.detail.plus .cardfoot .hidetxvideo .icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+
+.detail.plus .cardfoot .hidetxvideo .text {
+  color: rgba(255, 255, 255, .8);
+}

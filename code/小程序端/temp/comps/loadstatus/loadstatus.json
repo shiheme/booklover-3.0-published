@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loadmore": "../loadmore/index"
+  }
+}

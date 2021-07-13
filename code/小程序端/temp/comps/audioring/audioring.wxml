@@ -1,0 +1,33 @@
+<block wx:if="{{(item[index].quot_audio != false)}}">
+	<view id="audio{{index}}"
+		class="{{type !='detail'?item[index].book_tolibrary[0].book_pagestyle:''}} audio {{type}} {{item[index].quot_audio_state == 'false'?'':'on'}}"
+		bindtap="{{item[index].quot_audio_state == 'false'?'audioPlay':'audioStop'}}" data-key="{{index}}"
+		data-quot_audio_state="{{item[index].quot_audio_state}}">
+		<view class="audiosquare">
+			<view class="square square1 bgcolor-base-face-op30"></view>
+			<view class="square square2 bgcolor-base-face-op30"></view>
+			<view class="square square3 bgcolor-base-face-op30"></view>
+			<view class="audiobtn bgcolor-base-face">
+				<!-- <canvas class="canvas" style="" canvas-id="circleBar" /> -->
+				<view class="circlebar">
+					<view class="left">
+						<view class="block bgcolor-base-face" animation="{{leftani}}"></view>
+					</view>
+					<view class="right">
+						<view class="block bgcolor-base-face" animation="{{rightani}}"></view>
+					</view>
+					<view class="round bgcolor-base-face"></view>
+
+				</view>
+				<view class="audioimg {{!waiting&&item[index].quot_audio_state=='true'?'cir':''}}">
+					<icon class="icon iconfont icon-loading turn color-base-face"
+						wx:if="{{waiting&&item[index].quot_audio_state=='true'}}" />
+					<icon class="icon iconfont icon-audio color-base-face" wx:else />
+
+				</view>
+			</view>
+		</view>
+		<view class="audiobg"></view>
+	</view>
+
+</block>

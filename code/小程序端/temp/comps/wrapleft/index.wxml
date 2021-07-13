@@ -1,0 +1,43 @@
+<view class="content" style="padding-top: {{customBarHeight}}px;">
+
+	<view class="setbox">
+		<view class="searcharea">
+			<view class="searchbox">
+				<form catchreset="formReset" id="search-form">
+					<view class="searchwarp bgcolor-sub">
+						<view class="index-search container-class">
+							<!-- <icon class="icon" type="search" size="16" /> -->
+							<icon class="icon iconfont icon-search" />
+							<input id="search-input" name="input" bindconfirm="formSubmit" bindinput="onInput"
+								class="search-input input-class" confirmType="search" focus="{{autoFocus}}"
+								placeholder="{{placeHolder}}" placeholderClass="search-input-placeholder" value="{{searchKey}}"
+								wx:if="{{inputEnable}}"></input>
+							<view class="search-input" wx:else>{{placeHolder}}</view>
+							<icon class="icon" bindtap="onClear" type="clear" size="20" wx:if="{{searchKey}}" />
+						</view>
+						<view bindtap="formSubmit" class="searchtxt main-color" wx:if="{{keydown_number == 1}}">搜索</view>
+					</view>
+				</form>
+			</view>
+			<view class="searchlogs" wx:if="{{searchLogs.length > 0}}">
+				<view class="recordtext" style="display:flex;">
+					<view class="title"><text class="text">搜索记录</text></view>
+					<view class="delicon bgcolor-sub" bindtap="deleteHistory"><icon class="icon iconfont icon-clear" /></view>
+				</view>
+				<view class="historybox">
+					<block wx:key="id" wx:for="{{searchLogs}}">
+						<view class="historylist bgcolor-sub" bindtap='historyValue' data-url="{{item[1]}}" data-key="{{item[0]}}"
+							data-cnt_tp="{{item[2]}}">
+							<text class="text">{{item[2]}}·{{item[0]}}</text>
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="topcmt {{siteinfo[0].safemode == '1' && !isadmin ? 'safemode':''}}" style="bottom:calc(96rpx + env(safe-area-inset-bottom));">
+		<block wx:for="{{posts}}" wx:for-index="index" wx:key="key">
+			<dataitem index="{{index}}" posttype="topcmt" item="{{posts}}" />
+		</block>
+	</view>
+</view>

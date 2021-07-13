@@ -1,0 +1,157 @@
+<!--列表页面合集-->
+
+<view class="wrapper bgcolor-base"></view>
+
+<navtitle title="{{title}}" isshare="{{isshare}}" isActive="{{isActive}}" isGoback="{{isGoback}}" />
+
+<view class="container bgcolor-base page">
+
+  <view class="wrap"
+    style="padding-bottom:calc(96rpx + env(safe-area-inset-bottom));padding-top: {{customBarHeight}}px;">
+    <view class="searchtitle" wx:if="{{searchtitle}}">
+      <text class="text">{{searchtitle}}</text>
+    </view>
+    <view class="searchtitle" wx:if="{{toptype}}">
+      <text class="text">{{toptype}}</text>
+    </view>
+    <view class="libraryctrl" wx:if="{{(posttype==cnttype) && !toptype && !searchtitle && !tabid}}">
+      <view class="librarycatsbtn bgcolor-sub" catchtap="bindShowpop" data-poptype="librarycats" data-popitem=""
+        data-popheight="{{(windowHeight-3*customBarHeight-60)}}">
+        <icon class="icon iconfont icon-list" />
+        <block wx:if="{{!catstxt&!statetxt}}"><text class="text">所有类型{{cnttypetitle}}</text></block>
+        <block wx:if="{{statetxt}}"><text class="text">{{statetxt}}</text></block>
+        <block wx:if="{{catstxt}}"><text class="text">{{catstxt}}</text></block>
+      </view>
+      <view class="gridctrols bgcolor-sub" catchtap="bindGridchange">
+        <view class="gridbtn gridlist {{gridtype=='list'?'on':''}}">
+          <icon class="icon iconfont icon-gridlist" />
+        </view>
+        <view class="gridbtn gridwater {{gridtype=='water'?'on':''}}">
+          <icon class="icon iconfont icon-gridwater" />
+        </view>
+        <view class="line bgcolor-sub"></view>
+      </view>
+    </view>
+
+    <view class="cateswrap" wx:if="{{tabid == 1}}">
+      <scroll-view scroll-x style="width:100%;white-space: nowrap;" class="">
+        <view class="cates">
+          <view class="cateilist {{posttype=='library'?'main-bgcolor':'bgcolor-sub'}}" bindtap="bindtablike"
+            data-posttype="library">
+            <text class="text">书籍</text>
+          </view>
+          <view class="cateilist {{posttype=='films'?'main-bgcolor':'bgcolor-sub'}}" bindtap="bindtablike"
+            data-posttype="films">
+            <text class="text">影视</text>
+          </view>
+          <view class="cateilist {{posttype=='app'?'main-bgcolor':'bgcolor-sub'}}" bindtap="bindtablike"
+            data-posttype="app">
+            <text class="text">APP</text>
+          </view>
+          <view class="cateilist {{posttype=='topic'?'main-bgcolor':'bgcolor-sub'}}" bindtap="bindtablike"
+            data-posttype="topic">
+            <text class="text">发现</text>
+          </view>
+          <view class="cateilist {{posttype=='quot'?'main-bgcolor':'bgcolor-sub'}}" bindtap="bindtablike"
+            data-posttype="quot">
+            <text class="text">语录</text>
+          </view>
+          <view class="cateilist {{posttype=='act'?'main-bgcolor':'bgcolor-sub'}}" bindtap="bindtablike"
+            data-posttype="act">
+            <text class="text">福利</text>
+          </view>
+
+        </view>
+      </scroll-view>
+    </view>
+    <view class="cateswrap" wx:if="{{posttype == 'act' || posttype == 'faq'}}">
+      <scroll-view scroll-x style="width:100%;white-space: nowrap;" class="">
+        <view class="cates">
+          <view class="cateilist {{posttype=='library'?'main-bgcolor':'bgcolor-sub'}}" wx:for="{{category}}"
+            wx:for-index="index" wx:key="id" id="{{item.id}}" catchtap="bindCateByID">
+            <text class="text">{{item.name}}{{posttype == 'act'?'福利':'FAQ'}}</text>
+            <text class="text count">{{item.count}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="itemwrap {{gridtype=='water'&&(posttype=='library'||posttype=='app')?'libtypewater':'libtypelist'}}">
+      <block wx:if="{{gridtype=='water'}}">
+        <view class="wateritem">
+          <view class="item" wx:for="{{posts}}" wx:for-index="index" wx:key="id">
+            <view class="cardbox" wx:if="{{index%2==0}}">
+              <dataitem index="{{index}}" posttype="{{posttype}}" gridtype="{{gridtype}}" item="{{posts}}"
+                ani="{{ani}}" />
+            </view>
+          </view>
+        </view>
+        <view class="wateritem">
+          <view class="item" wx:for="{{posts}}" wx:for-index="index" wx:key="id">
+            <view class="cardbox" wx:if="{{index%2==1}}">
+              <dataitem index="{{index}}" posttype="{{posttype}}" gridtype="{{gridtype}}" item="{{posts}}"
+                ani="{{ani}}" />
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="item" wx:for="{{posts}}" wx:for-index="index" wx:key="id">
+          <view class="cardbox" wx:if="{{gridtype!='water' && index%3 ==0  && index!=0}}">
+            <view class="card">
+              <ad-custom unit-id="adunit-ad073b15bc52a9c6"></ad-custom>
+            </view>
+          </view>
+          <view class="cardbox">
+            <dataitem index="{{index}}" posttype="{{posttype}}" gridtype="{{gridtype}}" item="{{posts}}"
+              ani="{{ani}}" />
+          </view>
+        </view>
+      </block>
+    </view>
+    <loadstatus errtext="{{errtext}}" length="{{posts.length}}" hasnextpage="{{hasnextpage}}" />
+  </view>
+
+</view>
+
+<view class="fixedbox bgcolor-base fixed talkfixed" wx:if="{{posttype=='talk'}}"
+  style="{{keyboardheight?'transform: translateY(-'+(keyboardheight)*2+'rpx);transition:'+keyboardduration+'s;':''}}{{showfixed?'transform: translateY(-734rpx);transition:0.25s;':''}}">
+  <form catchsubmit="addComment">
+    <view class="islibmsg {{showfixbg||keyboardheight?'on':''}}" wx:if="{{islib}}">
+      <view class="text" style="background-color:{{options.libcolor}}">来自《{{options.libtit}}》<icon class="icon"
+          style="border-top-color: {{options.libcolor}} !important;"></icon>
+      </view>
+
+    </view>
+    <view class="talkbox">
+      <view class="talkwarp bgcolor-sub">
+        <view class="index-talk container-class">
+          <input class="talkinput" fixed="true" adjust-position="{{false}}" confirm-type="send"
+            cursor-spacing="{{showemoji?100:20}}" maxlength="100" name="inputComment" value="{{talkKey}}"
+            focus="{{focus}}" showConfirmBar="{{false}}" placeholder="{{placeholder}}" bindinput="bindInputContent"
+            bindblur="bindBlur" bindfocus="bindFocus" bindkeyboardheightchange="keyboardheightchange" />
+          <icon class="icon" bindtap="onClear" type="clear" size="20" wx:if="{{iscanpublish}}" />
+        </view>
+        <view bindtap="addComment" class="talktxt main-color" wx:if="{{iscanpublish}}">发布</view>
+      </view>
+
+      <view class="addemoji bgcolor-sub" catchtap="ShowEmoji" wx:if="{{!showemoji||keyboardheight}}">
+        <icon class="icon iconfont icon-emoji" />
+      </view>
+      <view class="addemoji bgcolor-sub" catchtap="HideEmoji" wx:else>
+        <icon class="icon iconfont icon-library" />
+      </view>
+    </view>
+    <view class="emojibox {{!showemoji||keyboardheight ? 'emoji-move-out' : 'emoji-move-in'}}">
+      <view class="iconlist">
+        <block wx:key="id" wx:for="{{detail.talk_emoji}}">
+          <image class="image" src="{{item.guid}}" id="{{item.ID}}" data-title="{{item.post_title}}"
+            catchtap="getemojival" />
+        </block>
+      </view>
+    </view>
+  </form>
+</view>
+<view class="fixedbg bgfilter5 {{showfixbg||keyboardheight?'on':''}}" catchtap="HideFixedAll"></view>
+
+<pop showpop="{{showpop}}" poptype="{{poptype}}" isadmin="{{isadmin}}" category="{{category}}" state="{{state}}"
+  height="{{popheight}}" bind:myevent="bindUpdatepost" />

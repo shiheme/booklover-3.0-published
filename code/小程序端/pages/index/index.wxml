@@ -1,0 +1,78 @@
+<!--首页-->
+<view class="tabwrapper {{opentabwrapper?'on':''}}" catchtouchmove="{{opentabwrapper?'true':''}}">
+  <view class="tabwrapperbg bgcolor-base"></view>
+  <view class="subwrapper">
+    <view class="close" style="position:relative;top:{{navBarHeight}}px;z-index:20;height:{{titleBarHeight}}px;">
+      <view bindtap="closetabwrapper" class="btn" style="height:{{titleBarHeight}}px;">
+        <icon class="icon iconfont icon-close" />
+      </view>
+    </view>
+    <wrapleft isShowabout="{{isShowabout}}" isadmin="{{isadmin}}" siteinfo="{{[siteinfo]}}" bind:myevent="toggleToast"
+      wx:if="{{[siteinfo]!=''}}" />
+  </view>
+
+  <view class="mainwrapper" bindtap="{{opentabwrapper?'closetabwrapper':''}}">
+    <view class="wrapper bgcolor-base"></view>
+
+    <navtitle title="" isshare="{{isshare}}" isActive="{{isActive}}" isGoback="{{isGoback}}" isScancode="{{isScancode}}"
+      isSearch="{{isSearch}}" isTolist="{{isTolist}}" isTomine="{{isTomine}}" bind:taplist="opentabwrapper" />
+
+    <view class="indexnavwrap" style="top:{{navBarHeight}}px">
+      <!-- 如果选项很多屏幕宽度不够，scroll设置为true滚动显示，否则scroll设置为false时使用flex布局均匀分布 -->
+      <indexnav tabs="{{indexnav}}" scroll="{{true}}" current="{{current}}" key="name"
+        bind:change="handleIndexnavChange" />
+    </view>
+
+    <!-- <block wx:if="{{categoryList}}"> -->
+    <view class="container">
+
+      <view class="swiperwrap">
+        <swiper indicator-dots="{{false}}" autoplay="{{false}}" current="{{current}}" style="height:100%;"
+          bindchange="handleIndexnavChange">
+          <block wx:for="{{indexnav}}" wx:key="id">
+            <swiper-item>
+              <datalist posttype="{{item.posttype}}" pageload="{{pageload}}" siteinfo="{{[siteinfo]}}"
+                isadmin="{{isadmin}}" loaded="{{item.loaded}}" mineclick="{{mineclick}}" bind:myevent="pageloadState" />
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+
+    <view class="indexsubnav {{pageload?'on':''}}" catchtap="{{pageload?'':'bindShowpop'}}" data-poptype="index" data-popitem=""
+      data-popheight="{{siteinfo.safemode == '1' && !isadmin ? 100 : 300}}">
+
+      <view class="squareop">
+        <view class="square square1"></view>
+        <view class="square square2"></view>
+        <view class="square square3"></view>
+      </view>
+      <view class="navbtn main-bgcolor">
+        <view class="wave">
+          <view class="rect1 rect"></view>
+          <view class="rect2 rect"></view>
+          <view class="rect3 rect"></view>
+        </view>
+        <!-- <icon class="icon iconfont icon-hamburger" /> -->
+      </view>
+
+    </view>
+    <view class="indexsubloadtext {{pageload?'on':''}}">
+      <view class="tips">
+        <text class="text large">欢迎访问图书3.0</text>
+        <text class="text {{errtext?'show':'hide'}}">出错啦～</text>
+      </view>
+      <view class="reloadbtn main-bgcolor {{errtext?'show':'hide'}}">重新加载</view>
+    </view>
+    <view class="pagewrapper bgcolor-base {{pageload?'on':''}}"></view>
+    <block wx:if="{{[siteinfo]!=''}}">
+      <pop showpop="{{showpop}}" showcolltip="{{showcolltip}}" poptype="{{poptype}}" isadmin="{{isadmin}}"
+        siteinfo="{{[siteinfo]}}" height="{{popheight}}" />
+    </block>
+    <!-- <view class="tabbar">
+      <tabbar tabbarStyle="{{tabbarStyle}}" showitemadd="{{showitemadd}}" safeinsetbottom="{{safeinsetbottom}}" selected="0" />
+    </view> -->
+
+
+  </view><!-- end mainwrapper -->
+</view><!-- end tabwrapper -->
